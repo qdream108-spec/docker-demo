@@ -1,20 +1,19 @@
 FROM python:3.7-alpine
 
-ENV pythonunbuffered=1
+ENV PYTHONUNBUFFERED 1
 
-#copy requirements
+# Copy requirements
 COPY requirements.txt /app/requirements.txt
 
-#install dependencies
-RUN pip install -r requirements.txt
+# Install dependencies
+RUN pip install -r /app/requirements.txt
 
-#create app directory
-RUN mkdir /app
+# Create app directory
 WORKDIR /app
 
-#copy project files
+# Copy app folder
 COPY ./app /app/
 
-#create non-root user
+# Create non-root user
 RUN adduser -D user
 USER user
